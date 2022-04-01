@@ -38,7 +38,7 @@ def fund_etf_category_sina(symbol: str = "LOF基金") -> pd.DataFrame:
     }
     r = requests.get(url, params=params)
     data_text = r.text
-    data_json = demjson.decode(data_text[data_text.find("([")+1:-2])
+    data_json = demjson.decode(data_text[data_text.find("([")+1:-2],strict=False)
     temp_df = pd.DataFrame(data_json)
     if symbol == "封闭式基金":
         temp_df.columns = [
